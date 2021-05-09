@@ -1,0 +1,86 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    def config = rootProject.ext.configuration
+
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId config.package
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner config.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    def libs = rootProject.ext.libPackages
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.impl.kotlinCore
+    implementation libs.impl.anrdoidxCompat
+    implementation libs.impl.materialDesign
+    implementation libs.impl.constraintLayout
+
+    testImplementation libs.impl.junit
+    androidTestImplementation libs.impl.junitExt
+    androidTestImplementation libs.impl.espresso
+
+    implementation libs.impl.lifecycleExt
+    implementation libs.impl.recyclerView
+    debugImplementation libs.impl.leakCanary
+    implementation libs.impl.stetho
+
+    testImplementation libs.impl.mockito
+    implementation libs.impl.retrofit
+    implementation libs.impl.retrofitJsonConverter
+    implementation libs.impl.stethoOkhttp
+    implementation libs.impl.glide
+
+    implementation "androidx.browser:browser:1.3.0"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
+
+    implementation libs.impl.kotlinCoroutineAndroid
+    implementation libs.impl.lifecycleViewModel
+}

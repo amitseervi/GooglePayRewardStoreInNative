@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Reward Store</string>
+    <string name="key_args_reward_id">rewardId</string>
+</resources>
