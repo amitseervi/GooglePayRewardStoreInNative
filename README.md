@@ -14,3 +14,8 @@ This is sample clone of gpay reward store Ui with use of motion layout.
 
 #### Reward Detail
 ![reward_store_detail_scaled](https://user-images.githubusercontent.com/19239677/117567950-0e0da100-b0dc-11eb-99f8-728d846408cf.png)
+
+# Video Demo
+
+https://user-images.githubusercontent.com/19239677/117568070-5af17780-b0dc-11eb-81d2-e0949a9596f6.mp4
+
